@@ -17,7 +17,7 @@ const Input = ({
     const [visibility, setVisibility] = useState(validationKey === "password");
     const [defaultValue, setDefaultValue] = useState(value);
     const [isValid, setIsValid] = useState(false);
-    const _debounce = useRef(debounce(onFinish))
+    const _debounce = debounce(onFinish, 500)
 
     useEffect(() => {
         setDefaultValue(value);
@@ -39,11 +39,11 @@ const Input = ({
             const _isValid = validateField(validationKey, e.target.value);
             setIsValid(_isValid);
 
-            if (onFinish) return _debounce.current(e, _isValid)
+            if (onFinish) return _debounce(e, _isValid)
             return onChange?.(e, _isValid)
         }
         // [--- handled when user finished typing >>>
-        if (onFinish) return _debounce.current(e)
+        if (onFinish) return _debounce(e)
         return onChange?.(e);
     };
 

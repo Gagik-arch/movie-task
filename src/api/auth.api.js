@@ -2,11 +2,11 @@ import Api from './index';
 
 class Auth extends Api {
     constructor() {
-        super('https://jsonplaceholder.typicode.com', true);
+        super('/user');
     }
 
-    signin() {
-        return this.get({ url: '/todos' });
+    signin(body) {
+        return this.post({ url: '/login', body });
     }
 }
 

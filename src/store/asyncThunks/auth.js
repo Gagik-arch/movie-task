@@ -1,22 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authApi from '../../api/authApi';
+import auth from '../../api/auth.api';
 import { authActions } from '../slices/auth.slice';
+import toast from 'react-hot-toast';
 
 export const login = createAsyncThunk(
     'auth/login',
-    async ({ body, navigation }, { dispatch }) => {
-        dispatch(authActions.setLoading(true));
+    async ({ body, navigate }, { dispatch }) => {
+        dispatch(authActions.setIsLoading(true));
 
-        authApi
-            .login(body)
+        auth.signin(body)
             .then((res) => {
-                dispatch(authActions.setUserData(res.data));
+                navigate('/my-movies');
+                dispatch(authActions.setData(res.data));
+                localStorage.setItem('token', res.data.token);
             })
             .catch((e) => {
-                toast.error('This is an error!');
+                toast.error(e.toString());
             })
             .then(() => {
-                dispatch(authActions.setLoading(false));
+                dispatch(authActions.setIsLoading(false));
             });
     }
 );

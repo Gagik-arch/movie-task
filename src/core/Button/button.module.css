@@ -22,8 +22,21 @@
     color: #fff;
 }
 
+.secondary {
+    background-color: transparent;
+    border: 1px solid white;
+    color: #fff;
+}
+
+.secondary_disabled {
+    background-color: var(--primary-btn-bg-disabled);
+    color: #fff;
+}
+
 .primary,
-.primary_disabled {
+.primary_disabled,
+.secondary,
+.secondary_disabled {
     font-size: 16px;
     font-weight: 700;
     border-radius: 10px;

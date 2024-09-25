@@ -1,3 +1,4 @@
+import axios from 'axios';
 class Api {
     constructor(baseUrl = '', cleanReq = false) {
         this.URL = baseUrl;
@@ -16,6 +17,14 @@ class Api {
             headers,
         });
     }
+    patch({ url, body, headers }) {
+        return this.#configureRequest({
+            url,
+            body,
+            method: 'patch',
+            headers,
+        });
+    }
 
     #configureRequest = async ({
         url = '',
@@ -23,7 +32,9 @@ class Api {
         body,
         headers = {},
     }) => {
-        url = `${this.cleanReq ? this.URL : process.env.REACT_APP_URL}${url}`;
+        url = `${this.cleanReq ? this.URL : process.env.REACT_APP_URL}${
+            this.URL
+        }${url}`;
 
         const options = {
             method,
@@ -35,17 +46,13 @@ class Api {
 
         if (body) {
             if (body instanceof FormData) {
-                options.headers['content-type'] = 'multipart/form-data';
+                options.headers['Content-Type'] = 'multipart/form-data';
             }
-            options.data = JSON.stringify(body);
+
+            options.data = body;
         }
 
-        return fetch(url, options).then((response) => {
-            if (!response.ok) {
-                throw new Error(response.status.toString());
-            }
-            return response.json();
-        });
+        return axios(url, options);
     };
 }
 

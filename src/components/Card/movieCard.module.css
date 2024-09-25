@@ -9,6 +9,9 @@
     & > img {
         flex: 1;
     }
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .title {

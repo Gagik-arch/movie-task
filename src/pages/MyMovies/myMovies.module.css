@@ -34,10 +34,3 @@
     font-weight: 600;
     gap: 0 12px;
 }
-
-.movies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 80px;
-}
