@@ -7,15 +7,6 @@ import auth from './api/auth.api'
 import toast from 'react-hot-toast'
 
 function App() {
-  useEffect(() => {
-    auth.signin()
-      .then(r => {
-        console.log(r)
-      })
-      .catch(e => {
-        toast.error('This is an error!' + e);
-      })
-  }, [])
 
   return (
     <Provider store={store}>

@@ -10,6 +10,10 @@ const Router = () => {
                     path='/'
                     element={<Signin />}
                 />
+                <Route
+                    path='/my-movies'
+                    element={<MyMovies />}
+                />
             </Routes>
         </BrowserRouter>
     );

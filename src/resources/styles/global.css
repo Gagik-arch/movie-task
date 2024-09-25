@@ -1,6 +1,12 @@
 body {
     margin: 0;
     font-family: Montserrat, serif;
+    background-color: var(--background);
+    background-image: url('../../assets/images/wave.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: white;
 }
 
 html,
